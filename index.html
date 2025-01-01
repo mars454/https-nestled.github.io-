@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Estate Landing Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-...YOUR_HASH..." crossorigin="anonymous" referrerpolicy="no-referrer">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --bg-color: #fef5e7;
+            --text-color: #5dade2;
+            --main-color: #2471a3;
+            --accent-color: #154360;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(21, 67, 96);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+/* Logo styling */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    font-weight: bold;
+    transition: all 0.6s ease;
+}
+
+.logo video, .logo img {
+    width: 50px; /* Default size */
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    transition: width 0.6s ease, height 0.3s ease;
+    box-shadow: 0 0 15px 5px rgba(36, 113, 163, 0.7), 0 0 25px rgba(36, 113, 163, 0.5); /* Beam effect */
+}
+
+.logo span {
+    font-size: 1.5rem; /* Default text size */
+}
+
+@media (max-width: 768px) {
+    .logo video, .logo img {
+        width: 40px; /* Adjust logo size on smaller screens */
+        height: 40px;
+    }
+
+    .logo span {
+        font-size: 1.2rem; /* Adjust font size for mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .logo video, .logo img {
+        width: 30px; /* Further reduce size on very small screens */
+        height: 30px;
+    }
+
+    .logo span {
+        font-size: 1rem; /* Further reduce font size */
+    }
+}
+
+/* Adding glowing effect to the logo on hover */
+.logo:hover video, .logo:hover img {
+    box-shadow: 0 0 20px 10px rgba(36, 113, 163, 0.8), 0 0 30px rgba(36, 113, 163, 0.6);
+    transform: scale(1.1); /* Slightly scale the logo */
+}
+
+
+        .menu {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 1.2rem;
+            transition: color 0.4s ease;
+        }
+
+        .menu a:hover {
+            color: var(--accent-color);
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 2rem;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+
+        .cta-button {
+            background-color: var(--accent-color);
+            color: var(--text-color);
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        section {
+            padding: 6rem 2rem 3rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .hero {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            text-align: center;
+            gap: 2rem;
+        }
+
+        .hero .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero .hero-image img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 0 20px var(--main-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hero .hero-image img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px var(--main-color);
+        }
+
+        .hero .hero-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            text-align: left;
+        }
+
+        .hero .hero-content h1 {
+            font-size: 4rem;
+            color: var(--text-color);
+        }
+
+        .hero .hero-content p {
+            font-size: 1.2rem;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: left;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--main-color);
+            border: 2px solid var(--main-color);
+            border-radius: 50%;
+            width: 3rem;
+            height: 3rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--main-color);
+            color: var(--bg-color);
+            transform: scale(1.2);
+        }
+.stats {
+    display: flex; /* Align items horizontally */
+    justify-content: center; /* Center the stats */
+    gap: 5rem; /* Increase space between stats */
+    flex-wrap: wrap; /* Allow stats to wrap on smaller screens */
+}
+
+.stat {
+    text-align: center; /* Center align text inside each stat */
+    max-width: 250px; /* Set a max width for each stat box */
+}
+
+.stat h2 {
+    font-size: 2rem; /* Larger number */
+    margin-bottom: 0.5rem;
+}
+
+.stat h4 {
+    font-size: 1.1rem; 
+}
+
+			
+        .products {
+            padding: 4rem 2rem;
+            background-color: var(--main-color);
+            border-radius: 8px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .product-list {
+            display: flex;
+            justify-content: center; 
+            gap: 2rem; 
+            flex-wrap: wrap; 
+            padding: 2rem 0;
+        }
+
+        .product {
+            background-color: #fff;
+            color: #000;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            text-align: center;
+            flex: 0 0 300px; 
+            max-width: 300px;
+        }
+
+        .product img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .product h3 {
+            font-size: 1.5rem;
+            margin: 1rem 0 0.5rem;
+        }
+
+        .product p {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .product button {
+            background-color: var(--main-color);
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .product button:hover {
+            background-color: var(--accent-color);
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: var(--accent-color);
+            color: var(--text-color);
+        }
+
+        @media (max-width: 768px) {
+            .menu {
+                display: none;
+                flex-direction: column;
+                background: var(--bg-color);
+                position: absolute;
+                top: 100%;
+                right: 0;
+                width: 100%;
+                text-align: center;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+                padding: 1rem 0;
+            }
+
+            .menu.show {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero .hero-content {
+                align-items: center;
+                text-align: center;
+            }
+        }
+		
+		    p {
+        font-size: 1.2rem; /* Default for larger screens */
+        line-height: 1.6;
+        margin: 1rem 0;
+    }
+
+    @media (max-width: 768px) {
+        p {
+            font-size: 1rem; /* Adjust font size for tablets */
+            line-height: 1.5;
+        }
+    }
+
+    @media (max-width: 480px) {
+        p {
+            font-size: 0.9rem; /* Further reduce size for small screens */
+            line-height: 1.4;
+        }
+    }
+
+
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+<header>
+    <div class="logo">
+        <!-- Logo Video or Image -->
+        <video src="house.mp4" alt="Logo" onclick="goHome()" style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%;">
+        </video>
+        <span>Nestled by Eleonor</span>
+    </div>
+    <i class="fa fa-bars hamburger" onclick="toggleMenu()"></i>
+    <ul class="menu">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</header>
+
+
+    <!-- Hero Section (Introduction) -->
+    <section id="home" class="hero">
+        <div class="hero-image">
+            <img src="profile.jpg" alt="Profile Image">
+        </div>
+        <div class="hero-content">
+            <h1>Meet Eleonor</h1>
+            <h2>Your Trusted Real Estate Partner</h2>
+            <!-- Social Icons Below the Heading -->
+            <div class="social-icons">
+				<p>For more listings click here!</p>
+                <a href="https://www.facebook.com/eleonor.c.guyot" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+			
+			</div>
+            <div class="social-icons">
+				<p>Message me!</p>
+			</div>
+            <div class="social-icons">
+                <a href="mailto:elietabili@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+				<a href="https://www.instagram.com/llabanguyot/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+				<a href="https://x.com/llabanguyot" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+				<a href="viber://add?number=+639358156234" target="_blank"><i class="fa-brands fa-viber"></i></a>
+				<a href="https://wa.me/+639107262894" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+				<a href="https://www.youtube.com/@eleonorllaban6593" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+
+            </div>
+
+
+            <p>
+                Looking for your dream home or investment property? Eleonor combines deep local market expertise,
+                dedication, and a personalized approach to guide you to the perfect property.
+            </p>
+
+            <!-- Stats in One Line -->
+            <div class="stats">
+                <div class="stat">
+                    <h2>1000+</h2>
+                    <h4>Properties</h4>
+                    <h4>Listed</h4>
+                </div>
+                <div class="stat">
+                    <h2>1000+</h2>
+                    <h4>Happy</h4>
+                    <h4>Clients Served</h4>
+                </div>
+                <div class="stat">
+                    <h2>2</h2>
+                    <h4>Years of</h4>
+                    <h4>Experience</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <!-- Footer -->
+    <footer id="contact">
+        <p>&copy; 2024 Nestled by Eleonor. All Rights Reserved.</p>
+		
+		<p> For more inquiries please call: +639107262894</p>
+<a href="tel:+639107262894" class="call-button" target="_blank">
+        <i class="fa-solid fa-phone"></i> Call Now
+    </a>    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.querySelector('.menu');
+            menu.classList.toggle('show');
+        }
+
+        function goHome() {
+            document.getElementById('home').scrollIntoView({ behavior: 'smooth' });
+        }
+		
+    </script>
+</body>
+
+</html>
